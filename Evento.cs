@@ -79,7 +79,7 @@
             MassimaCapienzaEvento = massimaCapienzaEvento;
             NumeroPostiPrenotati = 0;
         }
-        private int NumeroPostiDisponibili()
+        public int NumeroPostiDisponibili()
         {
             return MassimaCapienzaEvento - NumeroPostiPrenotati;
         }
