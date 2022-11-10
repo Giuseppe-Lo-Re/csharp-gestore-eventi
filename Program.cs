@@ -2,6 +2,8 @@
 using System.Runtime.ConstrainedExecution;
 using static GestoreEventi;
 
+
+//Prenotazione Evento
 void Prenotazioni(Evento evento)
 {
     bool disdetta = true;
@@ -33,6 +35,24 @@ void Prenotazioni(Evento evento)
             disdetta = false;
         }
     }
+}
+
+// Creazione evento
+Evento CreaEvento()
+{
+    Console.WriteLine("Inserisci il nome del nuovo evento: ");
+    string titoloEvento = Console.ReadLine();
+
+    Console.WriteLine("Inserisci la data dell'evento (gg/mm/yyy): ");
+    DateTime dataEvento = System.DateTime.Parse(Console.ReadLine());
+
+    Console.WriteLine("Inserisci il numero dei posti totali: ");
+    int postiTotali = Convert.ToInt32(Console.ReadLine());
+
+    Evento evento = new Evento(titoloEvento, dataEvento, postiTotali);
+    Console.WriteLine(evento.ToString());
+
+    return evento;
 }
 
 
