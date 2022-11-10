@@ -15,7 +15,7 @@
             }
             set
             {
-                if(value == "")
+                if (value == "")
                 {
                     throw new Exception("Il titolo non può essere vuoto");
                 }
