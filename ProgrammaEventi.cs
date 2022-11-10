@@ -18,6 +18,9 @@ public class ProgrammaEventi
 
     public void RicercaPerData()
     {
+        Console.WriteLine();
+        Console.WriteLine("********** RICERCA EVENTO **********");
+            
         List<Evento> EventiPerData = new List<Evento>();
         Console.WriteLine("Inserire data dell'evento da ricercare: ");
         DateTime DataRicerca = Convert.ToDateTime(Console.ReadLine());
@@ -59,7 +62,7 @@ public class ProgrammaEventi
 
     public string MostraProgrammaEventi()
     {
-        string programma = "Nome programma evento " + this.Titolo;
+        string programma = "Nome programma eventi: " + this.Titolo + "\n";
         Console.WriteLine();
         foreach (Evento evento in this.Eventi)
         {
