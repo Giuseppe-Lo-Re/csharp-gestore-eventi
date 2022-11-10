@@ -7,6 +7,13 @@
         private int _massimaCapienzaEvento;
         private int _numeroPostiPrenotati;
 
+        public Evento(string titolo, DateTime data, int massimaCapienzaEvento)
+        {
+            Titolo = titolo;
+            Data = data;
+            MassimaCapienzaEvento = massimaCapienzaEvento;
+            NumeroPostiPrenotati = 0;
+        }
         public string Titolo
         {
             get
@@ -33,13 +40,17 @@
             }
             set
             {
-                if(value < DateTime.Now)
+                DateTime dataOdierna = DateTime.Now;
+                TimeSpan timeSpan = DateTime.Now - dataOdierna;
+                int differenzaGiorni = Convert.ToInt32(timeSpan.Days / 30);
+
+                if(differenzaGiorni < 0)
                 {
                     throw new Exception("La data non può essere precedente a quella odierna");
                 }
                 else
                 {
-                    Data = value;
+                    _data = value;
                 }
             }
         }
@@ -72,13 +83,7 @@
                 _numeroPostiPrenotati = value;
             }
         }
-        public Evento(string titolo, DateTime data, int massimaCapienzaEvento)
-        {
-            Titolo = titolo;
-            Data = data;
-            MassimaCapienzaEvento = massimaCapienzaEvento;
-            NumeroPostiPrenotati = 0;
-        }
+        
         public int NumeroPostiDisponibili()
         {
             return MassimaCapienzaEvento - NumeroPostiPrenotati;
@@ -96,7 +101,7 @@
             }
             else
             {
-                NumeroPostiPrenotati -= posti;
+                NumeroPostiPrenotati += posti;
             }
         }
         public void DisdiciPosti(int posti)
@@ -105,7 +110,7 @@
             {
                 throw new Exception("Il numero dei posti da sdidire deve essere minimo 1");
             }
-            if(posti > NumeroPostiPrenotati)
+            if(posti < NumeroPostiPrenotati)
             {
                 throw new Exception("Il numero dei posti da sdidire non può essere superiore al numero posti prenotati");
             }
@@ -113,6 +118,8 @@
             {
                 throw new Exception("L'evento è terminato");
             }
+
+            NumeroPostiPrenotati -= posti;
         }
         public override string ToString()
         {
